@@ -65,6 +65,9 @@ public class SecurityConfig {
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/user").hasAuthority("USER")
+                        .requestMatchers("/admin").hasAuthority("ADMIN")
+                        .requestMatchers("/staff").hasAuthority("STAFF")
                         .anyRequest()
                         .permitAll())
                 .authenticationProvider(authenticationProvider())

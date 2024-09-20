@@ -12,7 +12,11 @@ public enum AuthApiCode implements ApiCode{
     JWT_TOKEN_EXPIRED(42, "JWT token expired"),
     UNSUPPORTED_JWT_TOKEN(43, "Unsupported JWT token"),
     JWT_CLAIMS_EMPTY(44, "JWT claims empty"),
-    USER_ID_NOT_FOUND(45, "User not found");
+    USER_ID_NOT_FOUND(45, "User not found"),
+    PERMISSION_DENIED(46, "Permission denied"),
+    NEED_AUTHENTICATION(47, "Need authentication"),
+    USERNAME_OR_PASSWORD_IS_INCORRECT(48, "Credentials is incorrect")
+    ;
     private final Integer code;
     private final String message;
 }
