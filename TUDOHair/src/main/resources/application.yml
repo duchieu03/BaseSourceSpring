@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: toho
+  jpa:
+    show-sql: false
+    openInView: false
+    properties:
+      hibernate:
+        dialect=org.hibernate.dialect.MySQLDialect
+        format_sql=true
+    hibernate:
+      ddlAuto: update
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MYSQL_URL}?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+    username: ${MYSQL_USERNAME}
+    password: ${MYSQL_PASSWORD}
+
+server:
+  port: ${SERVER_PORT}
+
+springdoc:
+  swaggerUi:
+    showExtensions: true
+    showCommonExtensions: true
+  use-fqn: false #show class in detail
+  version: '2.2.0'
+  server-url: ${PROD_URL}
+
+auth:
+  token-secret: ${AUTH_TOKEN_SECRET}
+  access-token-expiration-mils: 86400000
+  refresh-token-expiration-mils: 259200000
+  verify-email-token-expiration-mils: 86400000
+
+file:
+  rootPath: public/uploads
+  domain: ${PROD_URL}
