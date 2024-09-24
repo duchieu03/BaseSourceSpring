@@ -1,10 +1,10 @@
 package com.example.TUDOHair.config;
 
+import com.example.TUDOHair.base.WebConstants;
 import com.example.TUDOHair.service.security.CustomUserDetailsService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -35,6 +35,23 @@ public class SecurityConfig {
     private final CustomUserDetailsService customUserDetailsService;
 
     private final TokenAuthenticationFilter tokenAuthenticationFilter;
+
+    private static String etc(String prefix) {
+        return String.format("%s/**", prefix);
+    }
+
+    private static final String[] PERMIT_ALL_URLS = new String[]{
+            etc(WebConstants.API_AUTH_PREFIX_V1),
+            etc(WebConstants.API_FILE_PREFIX_V1),
+
+            etc(WebConstants.UPLOADED_FILE_PREFIX),
+
+            "/error",
+            "/oauth2/**",
+            "/swagger-ui/**",
+            "/v3/api-docs/**",
+            "/actuator/**"
+    };
 
     @Bean
     public AuthenticationManager authenticationManager(
@@ -68,8 +85,10 @@ public class SecurityConfig {
                         .requestMatchers("/user").hasAuthority("USER")
                         .requestMatchers("/admin").hasAuthority("ADMIN")
                         .requestMatchers("/staff").hasAuthority("STAFF")
+                        .requestMatchers(PERMIT_ALL_URLS)
+                        .permitAll()
                         .anyRequest()
-                        .permitAll())
+                        .authenticated())
                 .authenticationProvider(authenticationProvider())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .exceptionHandling(exceptionHandling -> exceptionHandling

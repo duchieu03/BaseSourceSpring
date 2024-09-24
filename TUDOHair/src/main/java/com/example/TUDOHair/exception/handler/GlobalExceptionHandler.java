@@ -36,7 +36,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ApiRes<Void>> handleBadCredentialsException(BadCredentialsException e) {
         log.error("Error: ", e);
-        return ResponseEntity.badRequest().body(ApiRes.with(AuthApiCode.USERNAME_OR_PASSWORD_IS_INCORRECT));
+        return ResponseEntity.badRequest().body(ApiRes.with(AuthApiCode.EMAIL_OR_PASSWORD_IS_INCORRECT));
     }
 
     @ExceptionHandler(Exception.class)

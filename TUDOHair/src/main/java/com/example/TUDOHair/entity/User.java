@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table
 @Getter
 @Setter
 @Builder
@@ -37,6 +36,8 @@ public class User extends BaseModel implements UserDetails {
     private Role role;
 
     private String avatarUrl;
+
+    private String phoneNum;
 
     @Override
     @JsonIgnore

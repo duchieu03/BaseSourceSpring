@@ -15,7 +15,12 @@ public enum AuthApiCode implements ApiCode{
     USER_ID_NOT_FOUND(45, "User not found"),
     PERMISSION_DENIED(46, "Permission denied"),
     NEED_AUTHENTICATION(47, "Need authentication"),
-    USERNAME_OR_PASSWORD_IS_INCORRECT(48, "Credentials is incorrect")
+    EMAIL_OR_PASSWORD_IS_INCORRECT(48, "Credentials is incorrect"),
+    NAME_IS_REQUIRED(49, "Name is required"),
+    EMAIL_IS_REQUIRED(50, "Email is required"),
+    INVALID_EMAIL(51, "Invalid email"),
+    EMAIL_IS_IN_USED(52, "Email is in used")
+
     ;
     private final Integer code;
     private final String message;
